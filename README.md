@@ -125,10 +125,7 @@ pod 'NERtcCallKit'
 > 可参考在NTESAppDelegate.m的setupRTCKit方法中实现
 
 ```objective-c
-//注册获取token的服务
-//在线上环境中，token的获取需要放到您的应用服务端完成，然后由服务器通过安全通道把token传递给客户端
-//Demo中使用的URL仅仅是demoserver，不要在您的应用中使用
-//详细请参考: 获取安全模式token
+// 注册获取token的服务
 // 安全模式需要计算token，如果tokenHandler为nil表示非安全模式，需要联系经销商开通
  NERtcCallKit.sharedInstance.tokenHandler = ^(uint64_t uid, void (^complete)(NSString *token, NSError *error)) {
 
@@ -142,12 +139,12 @@ pod 'NERtcCallKit'
  };
 ```
 
-
+> 在线上环境中，token的获取需要放到您的应用服务端完成，然后由服务器通过安全通道把token传递给客户端。Demo中使用的URL仅仅是demoserver，不要在您的应用中使用。详细请参考: [获取安全模式token](https://dev.yunxin.163.com/docs/product/%E9%9F%B3%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9D2.0/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/%E8%8E%B7%E5%8F%96Token )
 
 #### 呼叫
 
 > Demo中在 onTapMediaItemVideoChat 初始化 NECallViewController，及初始化 initWithOtherMember 传入userID，当前通话类型，可由开发者根据业务需求实现该controller。
-
+>
 > 目的是为了获取userID及通话类型。
 
 ```objective-c
