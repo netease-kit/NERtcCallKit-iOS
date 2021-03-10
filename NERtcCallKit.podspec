@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors = 'Netease IM Team'  
   s.source  = { :git => 'https://github.com/netease-im/NERtcCallKit-iOS.git', :tag => '1.0.1'}  
   s.platform = :ios, '9.0' 
-  s.source_files = 'NERtcCallKit/NERtcCallKit/Classes/**/*.{h,m}'
+  s.source_files = 'NERtcCallKit/NERtcCallKit/**/*.{h,m}'
   s.dependency 'NIMSDK_LITE', '8.1.0'
   s.dependency 'NERtcSDK', '3.7.3.1'
 end 
