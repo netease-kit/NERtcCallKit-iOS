@@ -129,14 +129,15 @@
 }
 
 - (void)setupLocalView:(nullable UIView *)localView {
-    NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
-    canvas.renderMode = kNERtcVideoRenderScaleCropFill;
-    canvas.container = localView;
-    [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
     __unused int ret;
     if (localView) {
+        NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
+        canvas.renderMode = kNERtcVideoRenderScaleCropFill;
+        canvas.container = localView;
+        [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
         ret = [NERtcEngine.sharedEngine startPreview];
     } else {
+        [NERtcEngine.sharedEngine setupLocalVideoCanvas:nil];
         ret = [NERtcEngine.sharedEngine stopPreview];
     }
 }
@@ -482,6 +483,8 @@
     if (!self.context.channelInfo) {
         return;
     }
+    [self.context cleanUp];
+    self.callStatus = NERtcCallStatusIdle;
     NSError *error = reason == kNERtcNoError ? nil : [NSError errorWithDomain:kNERtcCallKitErrorDomain code:reason userInfo:@{NSLocalizedDescriptionKey: NERtcErrorDescription(reason)}];
     [self.delegateProxy onDisconnect:error];
 }
